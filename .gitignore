@@ -1,3 +1,6 @@
 *.png
 *.mp4
 *.json
+*.npy
+*.keras
+__pycache__
