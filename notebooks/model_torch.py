@@ -34,7 +34,7 @@ class Model(nn.Module):
             nn.Dropout(0.25),
         )
         self.fc_layers = nn.Sequential(
-            nn.Linear(256 * 2 * 2, 256),
+            nn.Linear(256 * 21 * 42, 256),
             nn.ReLU(),
             nn.BatchNorm1d(256),
             nn.Dropout(0.5),
@@ -42,12 +42,13 @@ class Model(nn.Module):
             nn.ReLU(),
             nn.BatchNorm1d(60),
             nn.Dropout(0.5),
-            nn.Linear(60, 12),
+            nn.Linear(60, 13),
             nn.Softmax(dim=1)
         )
 
     def forward(self, x):
         x = self.conv_layers(x)
+        print(x.shape)
         x = x.view(x.size(0), -1)  # Flatten
         x = self.fc_layers(x)
         return x
